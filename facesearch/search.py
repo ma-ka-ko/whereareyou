@@ -1,6 +1,7 @@
 import numpy as np
 import cv2
 import sys
+import time
 
 cap = cv2.VideoCapture(0)
 cascPath = sys.argv[1]
@@ -24,13 +25,14 @@ while(True):
     )
 
     #print "Found {0} faces!".format(len(faces))
-    
+
 
     im = frame
 
     # Draw a rectangle around the faces
     for (x, y, w, h) in faces:
         im = frame[y:y+h,x:x+h]
+        cv2.imwrite("fotos/%d.jpg"%(time.time()),im)
         cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
 
 
